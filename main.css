@@ -35,6 +35,7 @@ header {
 }
 
 .main-container {
+  text-align: center;
   padding: 20px;
   min-height: 500px;
 }
