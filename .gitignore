@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/settings.json
+*.suo
+*.user
+
+# Temp files
+*.tmp
+*.bak
+*~
