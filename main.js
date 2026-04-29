@@ -4,6 +4,12 @@ let secondModelMixer, secondModelActions = [];
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
+const modelTitles = {
+  'Aventador.glb': 'Web 3D Motors Bamborghini Baventador',
+  'Car.glb':       'Web 3D Motors Family Car',
+  'Truck.glb':     'Web 3D Motors Pickup Truck'
+};
+
 init();
 
 function init() {
@@ -132,4 +138,6 @@ switchBtn.addEventListener('click', function () {
     currentModel = 'Aventador.glb';
     loadModel(assetPath + 'Aventador.glb');
   }
+  // Update car title
+  document.querySelector('.car-title').textContent = modelTitles[currentModel];
 });
