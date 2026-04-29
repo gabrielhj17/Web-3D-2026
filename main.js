@@ -1,4 +1,4 @@
-let scene, camera, renderer, clock, mixer, actions = [], mode;
+let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false;
 
 init();
 
@@ -55,4 +55,18 @@ function resize() {
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+}
+
+const wireframeBtn = document.getElementById("toggleWireframe");
+wireframeBtn.addEventListener('click', function() {
+  isWireframe = !isWireframe;
+  toggleWireframe(isWireframe);
+});
+
+function toggleWireframe(enable) {
+  scene.traverse(function (object) {
+    if (object.isMesh) {
+      object.material.wireframe = enable;
+    }
+  })
 }
