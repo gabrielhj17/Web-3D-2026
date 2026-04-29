@@ -1,4 +1,5 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false;
+let loadedModel;
 
 init();
 
@@ -33,6 +34,8 @@ function init() {
     const model = gltf.scene;
     scene.add(model);
 
+    loadedModel = model;
+
     mixer = new THREE.AnimationMixer(model);
     gltf.animations.forEach(clip => {
       actions.push(mixer.clipAction(clip));
@@ -50,6 +53,7 @@ function animate() {
   renderer.render(scene, camera);
 }
 
+// Handle window resize
 function resize() {
   const canvas = document.getElementById('three-canvas');
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -57,12 +61,14 @@ function resize() {
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 }
 
+// Wireframe button logic
 const wireframeBtn = document.getElementById("toggleWireframe");
 wireframeBtn.addEventListener('click', function() {
   isWireframe = !isWireframe;
   toggleWireframe(isWireframe);
 });
 
+// Wireframe function
 function toggleWireframe(enable) {
   scene.traverse(function (object) {
     if (object.isMesh) {
@@ -70,3 +76,15 @@ function toggleWireframe(enable) {
     }
   })
 }
+
+// Rotation button logic
+const rotateBtn = document.getElementById("Rotate");
+rotateBtn.addEventListener('click', function() {
+  if (loadedModel) {
+    const axis = new THREE.Vector3(0, 1, 0);
+    const angle = Math.PI / 8; // Rotate 22.5 degrees
+    loadedModel.rotateOnAxis(axis, angle);
+  } else {
+    console.warn('Model not loaded yet');
+  }
+})
