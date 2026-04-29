@@ -6,7 +6,7 @@
   <title>Web 3D Motors</title>
   <link rel="stylesheet" href="main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
@@ -22,14 +22,20 @@
     <a href="sitemap.html">Sitemap</a>
   </div>
 
-  <div class="main-container">
-    <canvas id="three-canvas"></canvas>
-  </div>
-
   <div class="model-buttons">
     <button class="model-btn active" data-model="aventador" onclick="switchModel('aventador')">Aventador</button>
     <button class="model-btn" data-model="car" onclick="switchModel('car')">Car</button>
     <button class="model-btn" data-model="truck" onclick="switchModel('truck')">Truck</button>
+  </div>
+
+  <div class="main-container">
+    <canvas id="three-canvas"></canvas>
+  </div>
+
+  <div class="model-interaction-buttons">
+    <button>Animate</button>
+    <button>Toggle Wireframe</button>
+    <button>Rotate</button>
   </div>
 
   <footer>Web 3D Motors 2026</footer>
