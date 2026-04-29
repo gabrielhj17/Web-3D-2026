@@ -1,4 +1,4 @@
-let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false;
+let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, currentModel = 'Aventador.glb';;
 let loadedModel;
 let secondModelMixer, secondModelActions = [];
 const loader = new THREE.GLTFLoader();
@@ -122,5 +122,14 @@ function loadModel(modelPath) {
 // Event listener for switch model button
 const switchBtn = document.getElementById("switchModel");
 switchBtn.addEventListener('click', function () {
-  loadModel(assetPath + 'Car.glb');
-})
+  if (currentModel === 'Aventador.glb') {
+    currentModel = 'Car.glb';
+    loadModel(assetPath + 'Car.glb');
+  } else if (currentModel === 'Car.glb') {
+    currentModel = 'Truck.glb';
+    loadModel(assetPath + 'Truck.glb');
+  } else {
+    currentModel = 'Aventador.glb';
+    loadModel(assetPath + 'Aventador.glb');
+  }
+});
