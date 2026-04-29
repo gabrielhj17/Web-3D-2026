@@ -1,10 +1,12 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false;
 let loadedModel;
+let secondModelMixer, secondModelActions = [];
+const loader = new THREE.GLTFLoader();
+const assetPath = 'Models/';
 
 init();
 
 function init() {
-  const assetPath = 'Models/';
   const canvas = document.getElementById('three-canvas');
 
   clock = new THREE.Clock();
@@ -29,7 +31,6 @@ function init() {
   controls.target.set(1, 2, 0);
   controls.update();
 
-  const loader = new THREE.GLTFLoader();
   loader.load(assetPath + 'Aventador.glb', function (gltf) {
     const model = gltf.scene;
     scene.add(model);
@@ -87,4 +88,39 @@ rotateBtn.addEventListener('click', function() {
   } else {
     console.warn('Model not loaded yet');
   }
+})
+
+// Function to load second model
+function loadModel(modelPath) {
+  // Remove the current model if it exists
+  if (loadedModel) {
+    scene.remove(loadedModel);
+  }
+
+  // Load new model
+  loader.load(modelPath, function (gltf) {
+    const model = gltf.scene;
+
+    // Set model position and add it
+    model.position.set(0, 0, 0);
+    scene.add(model);
+
+    loadedModel = model;
+
+    // Reset animations
+    mixer = new THREE.AnimationMixer(model);
+    const animations = gltf.animations;
+    actions = [];
+
+    animations.forEach(clip => {
+      const action = mixer.clipAction(clip);
+      actions.push(action);
+    })
+  })
+}
+
+// Event listener for switch model button
+const switchBtn = document.getElementById("switchModel");
+switchBtn.addEventListener('click', function () {
+  loadModel(assetPath + 'Car.glb');
 })
