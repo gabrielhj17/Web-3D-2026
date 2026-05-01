@@ -78,3 +78,10 @@ button {
 .car-title {
   text-align: center;
 }
+
+#gui-container {
+  position: absolute;
+  top: 270px;
+  left: 20px;
+  z-index: 1000;
+}
