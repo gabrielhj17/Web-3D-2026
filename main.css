@@ -6,6 +6,7 @@ body {
   flex-direction: column;
 }
 
+/* Navbar */
 .topnav {
   background-color: #333;
   display: flex;
@@ -75,6 +76,7 @@ button {
   text-align: center;
 }
 
+/* Lighting controller container */
 #gui-container {
   position: absolute;
   top: 270px;

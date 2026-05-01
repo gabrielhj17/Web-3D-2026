@@ -6,7 +6,7 @@ const assetPath = 'Models/';
 
 const modelData = {
   'Aventador.glb': {
-    title:       'Bamborghini Baventador',
+    title:       'Web 3D Bamborghini Baventador',
     subtitle:    '2026 Model · Super Sports',
     price:       '£189,900',
     engine:      '6.5L V12',
