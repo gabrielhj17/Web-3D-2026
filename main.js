@@ -52,6 +52,8 @@ function init() {
   const guiContainer = document.getElementById('gui-container');
   guiContainer.appendChild(gui.domElement);
 
+  guiContainer.style.position = 'fixed';
+
   const spot = gui.addFolder('Spot');
   spot.open();
   spot.add(params.spot, 'enable').onChange(value => { 
