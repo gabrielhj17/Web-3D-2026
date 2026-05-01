@@ -4,10 +4,49 @@ let secondModelMixer, secondModelActions = [];
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
-const modelTitles = {
-  'Aventador.glb': 'Web 3D Motors Bamborghini Baventador',
-  'Car.glb':       'Web 3D Motors Family Car',
-  'Truck.glb':     'Web 3D Motors Pickup Truck'
+const modelData = {
+  'Aventador.glb': {
+    title:       'Bamborghini Baventador',
+    subtitle:    '2026 Model · Super Sports',
+    price:       '£189,900',
+    engine:      '6.5L V12',
+    horsepower:  '700 hp',
+    zeroToSixty: '2.9 sec',
+    topSpeed:    '217 mph',
+    drivetrain:  'AWD',
+    transmission:'7-speed ISR',
+    weight:      '1,575 kg',
+    colour:      'Cherry Red',
+    description: 'The Baventador is the pinnacle of Italian-inspired engineering, combining raw V12 power with a lightweight carbon fibre chassis for an unmatched driving experience.'
+  },
+  'Car.glb': {
+    title:       'Web 3D Family Cruiser',
+    subtitle:    '2026 Model · Family Saloon',
+    price:       '£32,500',
+    engine:      '2.0L Inline-4',
+    horsepower:  '180 hp',
+    zeroToSixty: '7.8 sec',
+    topSpeed:    '130 mph',
+    drivetrain:  'FWD',
+    transmission:'6-speed Auto',
+    weight:      '1,350 kg',
+    colour:      'Ghastly Green',
+    description: 'The Family Cruiser offers comfort, practicality and reliability for everyday life, with a refined interior and smooth ride quality.'
+  },
+  'Truck.glb': {
+    title:       'Web 3D Pickup Truck',
+    subtitle:    '2026 Model · Heavy Duty',
+    price:       '£54,000',
+    engine:      '3.5L V6 Turbo',
+    horsepower:  '400 hp',
+    zeroToSixty: '5.5 sec',
+    topSpeed:    '118 mph',
+    drivetrain:  '4WD',
+    transmission:'10-speed Auto',
+    weight:      '2,100 kg',
+    colour:      'Pretentious Purple',
+    description: 'Built for work and adventure, the Pickup Truck delivers serious towing capability and off-road performance without sacrificing daily comfort.'
+  }
 };
 
 init();
@@ -173,6 +212,27 @@ function loadModel(modelPath) {
   })
 }
 
+// Update car specs panel when model changed
+function updateInfoPanel(modelKey) {
+  const data = modelData[modelKey];
+  if (!data) return;
+
+  document.querySelector('.info-title').textContent       = data.title;
+  document.querySelector('.info-subtitle').textContent    = data.subtitle;
+  document.querySelector('.info-price').textContent       = data.price;
+  document.querySelector('.info-description').textContent = data.description;
+
+  const values = document.querySelectorAll('.spec-value');
+  values[0].textContent = data.engine;
+  values[1].textContent = data.horsepower;
+  values[2].textContent = data.zeroToSixty;
+  values[3].textContent = data.topSpeed;
+  values[4].textContent = data.drivetrain;
+  values[5].textContent = data.transmission;
+  values[6].textContent = data.weight;
+  values[7].textContent = data.colour;
+}
+
 // Event listener for switch model button
 const switchBtn = document.getElementById("switchModel");
 switchBtn.addEventListener('click', function () {
@@ -186,6 +246,7 @@ switchBtn.addEventListener('click', function () {
     currentModel = 'Aventador.glb';
     loadModel(assetPath + 'Aventador.glb');
   }
-  // Update car title
-  document.querySelector('.car-title').textContent = modelTitles[currentModel];
+  // Update car title and specs
+  document.querySelector('.car-title').textContent = modelData[currentModel].title;
+  updateInfoPanel(currentModel);
 });

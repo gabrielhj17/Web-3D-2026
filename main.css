@@ -71,12 +71,6 @@ button {
   cursor: pointer;
 }
 
-#three-canvas {
-  display: block;
-  width: 100%;
-  height: calc(100vh - 200px);
-}
-
 .car-title {
   text-align: center;
 }
@@ -98,4 +92,92 @@ table.table-bordered th,
 table.table-bordered td {
   border: 4px solid black;
   padding: 10px;
+}
+
+.viewer-layout {
+  display: flex;
+  gap: 16px;
+  margin: 16px;
+  align-items: stretch;
+}
+
+.viewer-left {
+  flex: 0 0 65%;
+  position: relative;
+  height: calc(100vh - 220px);
+}
+
+.viewer-left #three-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Info panel */
+.car-info-panel {
+  flex: 0 0 35%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #fff;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.info-subtitle {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+.info-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #cc0000;
+  padding: 8px 0;
+}
+
+.info-divider {
+  border-top: 1px solid #eee;
+  margin: 12px 0;
+}
+
+/* Specs grid */
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 8px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #999;
+}
+
+.spec-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.info-description {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
 }
