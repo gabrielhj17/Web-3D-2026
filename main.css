@@ -74,6 +74,18 @@ footer {
   text-align: center;
 }
 
+.model-light-buttons button.light-on {
+  background-color: #e63946;
+  border-color: #e63946;
+  color: white;
+}
+
+.model-light-buttons button.light-off {
+  background-color: black;
+  border-color: #555;
+  color: #555;
+}
+
 button {
   background-color: black;
   border: none;

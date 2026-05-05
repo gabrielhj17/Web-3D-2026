@@ -303,16 +303,22 @@ document.getElementById('toggleSpot').addEventListener('click', function () {
   lights.spot.visible = !lights.spot.visible;
   params.spot.enable = lights.spot.visible;
   this.textContent = lights.spot.visible ? 'Spotlight: ON' : 'Spotlight: OFF';
+  this.classList.toggle('light-on', lights.spot.visible);
+  this.classList.toggle('light-off', !lights.spot.visible);
 });
 
 // Ambient toggle
 document.getElementById('toggleAmbient').addEventListener('click', function () {
   ambientLight.visible = !ambientLight.visible;
   this.textContent = ambientLight.visible ? 'Ambient: ON' : 'Ambient: OFF';
+  this.classList.toggle('light-on', ambientLight.visible);
+  this.classList.toggle('light-off', !ambientLight.visible);
 });
 
 // Directional toggle
 document.getElementById('toggleDirectional').addEventListener('click', function () {
   directionalLight.visible = !directionalLight.visible;
   this.textContent = directionalLight.visible ? 'Directional: ON' : 'Directional: OFF';
+  this.classList.toggle('light-on', directionalLight.visible);
+  this.classList.toggle('light-off', !directionalLight.visible);
 });
