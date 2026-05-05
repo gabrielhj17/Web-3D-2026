@@ -13,6 +13,7 @@ body {
   justify-content: center;
   position: sticky;
   top: 0;
+  border-bottom: 3px solid #e63946;
 }
 
 .topnav a {
@@ -53,7 +54,7 @@ footer {
   text-align: center;
   padding: 20px;
   font-size: 0.85rem;
-  border-top: 1px solid #333;
+  border-top: 3px solid #e63946;
 }
 
 .model-interaction-buttons {
@@ -61,7 +62,7 @@ footer {
 }
 
 button {
-  background-color: red;
+  background-color: black;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -70,6 +71,8 @@ button {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  border: 3px solid #e63946;
+  margin: 20px 0;
 }
 
 .car-title {
@@ -125,6 +128,7 @@ table.table-bordered td {
   flex-direction: column;
   gap: 0;
   background: #fff;
+  border: 3px solid #e63946;
 }
 
 .info-title {
@@ -182,4 +186,57 @@ table.table-bordered td {
   color: #555;
   line-height: 1.6;
   margin: 0;
+}
+
+/* Header text */
+header {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  padding: 20px 40px;
+  border-bottom: 3px solid #e63946;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* The icon */
+.logo-mark {
+  background: #e63946;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  font-family: 'Arial Black', sans-serif;
+  line-height: 1;
+  box-shadow: 0 0 18px rgba(230, 57, 70, 0.6);
+}
+
+.logo-w  { color: #ffffff; }
+.logo-3d { color: #0a0a0a; background: #fff; padding: 0 3px; border-radius: 3px; }
+.logo-m  { color: #ffffff; }
+
+/* The text beside it */
+.logo-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.logo-strapline {
+  margin: 2px 0 0 0;
+  font-size: 0.8rem;
+  color: #e63946;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-style: italic;
 }
