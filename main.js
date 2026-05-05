@@ -1,6 +1,6 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, 
   currentModel = 'Aventador.glb', params, lights, controls, loadedModel, secondModelMixer, 
-  secondModelActions = [];
+  secondModelActions = [], ambientLight, directionalLight;
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
@@ -68,8 +68,12 @@ function init() {
   camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
   camera.position.set(-5, 5, 6);
 
-  const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
-  scene.add(ambient);
+  ambientLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+  scene.add(ambientLight);
+
+  directionalLight = new THREE.DirectionalLight(0xFFFFFF, 2);
+  directionalLight.position.set(0, 10, 2);
+  scene.add(directionalLight);
 
   lights = {};
 
@@ -292,4 +296,23 @@ document.getElementById('camDefault').addEventListener('click', function () {
   camera.position.set(-5, 5, 6);
   controls.target.set(0, 1, 0);
   controls.update();
+});
+
+// Spotlight toggle
+document.getElementById('toggleSpot').addEventListener('click', function () {
+  lights.spot.visible = !lights.spot.visible;
+  params.spot.enable = lights.spot.visible;
+  this.textContent = lights.spot.visible ? 'Spotlight: ON' : 'Spotlight: OFF';
+});
+
+// Ambient toggle
+document.getElementById('toggleAmbient').addEventListener('click', function () {
+  ambientLight.visible = !ambientLight.visible;
+  this.textContent = ambientLight.visible ? 'Ambient: ON' : 'Ambient: OFF';
+});
+
+// Directional toggle
+document.getElementById('toggleDirectional').addEventListener('click', function () {
+  directionalLight.visible = !directionalLight.visible;
+  this.textContent = directionalLight.visible ? 'Directional: ON' : 'Directional: OFF';
 });
