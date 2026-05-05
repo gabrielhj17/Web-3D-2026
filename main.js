@@ -6,6 +6,8 @@ const assetPath = 'Models/';
 
 const modelData = {
   'Aventador.glb': {
+    scale: 1,
+    position: new THREE.Vector3(0, 1, 0),
     title:       'Web 3D Bamborghini Baventador',
     subtitle:    '2026 Model · Super Sports',
     price:       '£189,900',
@@ -20,6 +22,8 @@ const modelData = {
     description: 'The Baventador is the pinnacle of Italian-inspired engineering, combining raw V12 power with a lightweight carbon fibre chassis for an unmatched driving experience.'
   },
   'Car.glb': {
+    scale: 2,
+    position: new THREE.Vector3(0, 0, 0),
     title:       'Web 3D Family Cruiser',
     subtitle:    '2026 Model · Family Saloon',
     price:       '£32,500',
@@ -34,6 +38,8 @@ const modelData = {
     description: 'The Family Cruiser offers comfort, practicality and reliability for everyday life, with a refined interior and smooth ride quality.'
   },
   'Truck.glb': {
+    scale: 2,
+    position: new THREE.Vector3(0, 0, 0),
     title:       'Web 3D Pickup Truck',
     subtitle:    '2026 Model · Heavy Duty',
     price:       '£54,000',
@@ -60,7 +66,7 @@ function init() {
   scene.background = new THREE.Color(0xaaaaaa);
 
   camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-  camera.position.set(-5, 25, 20);
+  camera.position.set(-5, 5, 6);
 
   const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
   scene.add(ambient);
@@ -121,11 +127,19 @@ function init() {
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.target.set(1, 2, 0);
+  controls.target.set(0, 1, 0);
   controls.update();
 
   loader.load(assetPath + 'Aventador.glb', function (gltf) {
     const model = gltf.scene;
+
+    const data = modelData['Aventador.glb'];
+    model.scale.set(data.scale, data.scale, data.scale);
+    model.position.copy(data.position);
+
+    const scale = modelData['Aventador.glb']?.scale ?? 1;
+    model.scale.set(scale, scale, scale);
+
     scene.add(model);
 
     loadedModel = model;
@@ -183,21 +197,25 @@ rotateBtn.addEventListener('click', function() {
   }
 })
 
-// Function to load second model
+// Function to load model
 function loadModel(modelPath) {
   // Remove the current model if it exists
   if (loadedModel) {
     scene.remove(loadedModel);
   }
 
+  const modelKey = modelPath.replace(assetPath, '');
+  const data = modelData[modelKey];
+
   // Load new model
   loader.load(modelPath, function (gltf) {
     const model = gltf.scene;
 
-    // Set model position and add it
-    model.position.set(0, 0, 0);
-    scene.add(model);
+    // Get the scale for this model
+    model.scale.set(data.scale, data.scale, data.scale);
+    model.position.copy(data.position);
 
+    scene.add(model);
     loadedModel = model;
 
     // Reset animations
