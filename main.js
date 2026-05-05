@@ -132,16 +132,12 @@ function init() {
 
   loader.load(assetPath + 'Aventador.glb', function (gltf) {
     const model = gltf.scene;
-
     const data = modelData['Aventador.glb'];
+
     model.scale.set(data.scale, data.scale, data.scale);
     model.position.copy(data.position);
 
-    const scale = modelData['Aventador.glb']?.scale ?? 1;
-    model.scale.set(scale, scale, scale);
-
     scene.add(model);
-
     loadedModel = model;
 
     mixer = new THREE.AnimationMixer(model);
