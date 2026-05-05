@@ -4,6 +4,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* Navbar */
@@ -102,8 +107,10 @@ table.table-bordered td {
 .viewer-layout {
   display: flex;
   gap: 16px;
-  margin: 16px;
   align-items: stretch;
+  box-sizing: border-box; 
+  width: 100%;    
+  padding: 16px;       
 }
 
 .viewer-left {
@@ -120,15 +127,17 @@ table.table-bordered td {
 
 /* Info panel */
 .car-info-panel {
-  flex: 0 0 35%;
+  flex: 1;
+  min-width: 0;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 0;
   background: #fff;
   border: 3px solid #e63946;
+
 }
 
 .info-title {
