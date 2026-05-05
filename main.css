@@ -66,6 +66,14 @@ footer {
   text-align: center;
 }
 
+.model-camera-buttons {
+  text-align: center;
+}
+
+.model-light-buttons {
+  text-align: center;
+}
+
 button {
   background-color: black;
   border: none;
