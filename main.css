@@ -70,6 +70,12 @@ footer {
   text-align: center;
 }
 
+.model-camera-buttons button.cam-active {
+  background-color: #e63946;
+  border-color: #e63946;
+  color: white;
+}
+
 .model-light-buttons {
   text-align: center;
 }

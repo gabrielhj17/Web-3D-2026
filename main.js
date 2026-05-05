@@ -270,11 +270,19 @@ switchBtn.addEventListener('click', function () {
 });
 
 // Camera view buttons
+// Set active camera button
+function setActiveCamBtn(activeId) {
+  ['camFront', 'camSide', 'camTop', 'camDefault'].forEach(id => {
+    document.getElementById(id).classList.remove('cam-active');
+  });
+  document.getElementById(activeId).classList.add('cam-active');
+}
 // Front view
 document.getElementById('camFront').addEventListener('click', function () {
   camera.position.set(0, 2, 10);
   controls.target.set(0, 1, 0);
   controls.update();
+  setActiveCamBtn('camFront');
 });
 
 // Side view
@@ -282,6 +290,7 @@ document.getElementById('camSide').addEventListener('click', function () {
   camera.position.set(10, 2, 0);
   controls.target.set(0, 1, 0);
   controls.update();
+  setActiveCamBtn('camSide');
 });
 
 // Top view
@@ -289,6 +298,7 @@ document.getElementById('camTop').addEventListener('click', function () {
   camera.position.set(0, 12, 0);
   controls.target.set(0, 0, 0);
   controls.update();
+  setActiveCamBtn('camTop');
 });
 
 // Default view
@@ -296,6 +306,7 @@ document.getElementById('camDefault').addEventListener('click', function () {
   camera.position.set(-5, 5, 6);
   controls.target.set(0, 1, 0);
   controls.update();
+  setActiveCamBtn('camDefault');
 });
 
 // Spotlight toggle
