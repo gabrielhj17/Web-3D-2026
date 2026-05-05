@@ -123,10 +123,6 @@ function init() {
     lights.spotHelper.update();
   }
 
-  const light = new THREE.DirectionalLight(0xFFFFFF, 2);
-  light.position.set(0, 10, 2);
-  scene.add(light);
-
   renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
