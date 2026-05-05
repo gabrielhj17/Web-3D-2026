@@ -1,6 +1,6 @@
-let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, currentModel = 'Aventador.glb', params, lights;
-let loadedModel;
-let secondModelMixer, secondModelActions = [];
+let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, 
+  currentModel = 'Aventador.glb', params, lights, controls, loadedModel, secondModelMixer, 
+  secondModelActions = [];
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
@@ -126,7 +126,7 @@ function init() {
   renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 1, 0);
   controls.update();
 
@@ -263,4 +263,33 @@ switchBtn.addEventListener('click', function () {
   // Update car title and specs
   document.querySelector('.car-title').textContent = modelData[currentModel].title;
   updateInfoPanel(currentModel);
+});
+
+// Camera view buttons
+// Front view
+document.getElementById('camFront').addEventListener('click', function () {
+  camera.position.set(0, 2, 10);
+  controls.target.set(0, 1, 0);
+  controls.update();
+});
+
+// Side view
+document.getElementById('camSide').addEventListener('click', function () {
+  camera.position.set(10, 2, 0);
+  controls.target.set(0, 1, 0);
+  controls.update();
+});
+
+// Top view
+document.getElementById('camTop').addEventListener('click', function () {
+  camera.position.set(0, 12, 0);
+  controls.target.set(0, 0, 0);
+  controls.update();
+});
+
+// Default view
+document.getElementById('camDefault').addEventListener('click', function () {
+  camera.position.set(-5, 5, 6);
+  controls.target.set(0, 1, 0);
+  controls.update();
 });
