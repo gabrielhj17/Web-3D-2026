@@ -1,6 +1,7 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, 
   currentModel = 'Aventador.glb', params, lights, controls, loadedModel, secondModelMixer, 
   secondModelActions = [], ambientLight, directionalLight;
+let sound;
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
@@ -328,4 +329,18 @@ document.getElementById('toggleDirectional').addEventListener('click', function 
   this.textContent = directionalLight.visible ? 'Directional: ON' : 'Directional: OFF';
   this.classList.toggle('light-on', directionalLight.visible);
   this.classList.toggle('light-off', !directionalLight.visible);
+});
+
+const playModelAnimationBtn = document.getElementById("playAnimation");
+playModelAnimationBtn.addEventListener('click', function () {
+  if (actions.length > 0) {
+    actions.forEach(action => {
+      action.reset();
+      action.setLoop(THREE.LoopOnce); // Play animation once 
+      action.clampWhenFinished = true; // Stop animating at last fram 
+      action.play();
+    });
+  } else {
+    console.warn('No animation available')
+  }
 });
