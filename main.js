@@ -270,7 +270,7 @@ function updateInfoPanel(modelKey) {
 const switchBtn = document.getElementById("switchModel");
 switchBtn.addEventListener('click', function () {
   isSpinning = false;
-  sound.stop();
+  if (sound && sound.isPlaying) sound.stop();
   // Switch model
   if (currentModel === 'Aventador.glb') {
     currentModel = 'Car.glb';
