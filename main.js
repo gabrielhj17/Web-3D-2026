@@ -1,6 +1,6 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, 
   currentModel = 'Aventador.glb', params, lights, controls, loadedModel, secondModelMixer, 
-  secondModelActions = [], ambientLight, directionalLight, sound;
+  secondModelActions = [], ambientLight, directionalLight, sound, isSpinning = false;
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
@@ -168,6 +168,11 @@ function init() {
 function animate() {
   requestAnimationFrame(animate);
   if (mixer) mixer.update(clock.getDelta());
+  
+  if (isSpinning && loadedModel) {
+    loadedModel.rotation.y += 0.01;
+  }
+  
   renderer.render(scene, camera);
 }
 
@@ -264,6 +269,9 @@ function updateInfoPanel(modelKey) {
 // Event listener for switch model button
 const switchBtn = document.getElementById("switchModel");
 switchBtn.addEventListener('click', function () {
+  isSpinning = false;
+  sound.stop();
+  // Switch model
   if (currentModel === 'Aventador.glb') {
     currentModel = 'Car.glb';
     loadModel(assetPath + 'Car.glb');
@@ -274,6 +282,14 @@ switchBtn.addEventListener('click', function () {
     currentModel = 'Aventador.glb';
     loadModel(assetPath + 'Aventador.glb');
   }
+
+  // Update button text based on new model
+  if (currentModel === 'Aventador.glb') {
+    playModelAnimationBtn.textContent = 'See it Driving';
+  } else {
+    playModelAnimationBtn.textContent = 'Spin Model';
+  }
+
   // Update car title and specs
   document.querySelector('.car-title').textContent = modelData[currentModel].title;
   updateInfoPanel(currentModel);
@@ -357,6 +373,7 @@ playModelAnimationBtn.addEventListener('click', function () {
     if (sound.isPlaying) sound.stop();
     sound.play();
   } else {
-    console.warn('No animation available')
+    isSpinning = !isSpinning;
+    this.textContent = isSpinning ? 'Stop Spinning' : 'Spin Model';
   }
 });
