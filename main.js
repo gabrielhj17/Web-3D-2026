@@ -1,7 +1,6 @@
 let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = false, 
   currentModel = 'Aventador.glb', params, lights, controls, loadedModel, secondModelMixer, 
-  secondModelActions = [], ambientLight, directionalLight;
-let sound;
+  secondModelActions = [], ambientLight, directionalLight, sound;
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
 
@@ -145,6 +144,20 @@ function init() {
     gltf.animations.forEach(clip => {
       actions.push(mixer.clipAction(clip));
     });
+  });
+
+  const listener = new THREE.AudioListener();
+  camera.add(listener);
+
+  // Create a sound and attach it to the listener
+  sound = new THREE.Audio(listener);
+
+  // Load a sound and set it as the buffer for the audio object
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load('Assets/Aventador Sound.mp3', function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(false);
+    sound.setVolume(1.0);
   });
 
   window.addEventListener('resize', resize, false);
@@ -340,6 +353,9 @@ playModelAnimationBtn.addEventListener('click', function () {
       action.clampWhenFinished = true; // Stop animating at last fram 
       action.play();
     });
+    // Play sound alongside animation
+    if (sound.isPlaying) sound.stop();
+    sound.play();
   } else {
     console.warn('No animation available')
   }
