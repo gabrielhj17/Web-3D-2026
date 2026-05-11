@@ -79,6 +79,14 @@
               Transmission: 10-speed Auto, Weight: 2,100 kg, Colour: Pretentious Purple, Description: Built for work and adventure, the Pickup Truck 
               delivers serious towing capability and off-road performance without sacrificing daily comfort.</td>
           </tr>
+          <tr>
+            <td>Fixing a spotlight movement bug</td>
+            <td>Claude</td>
+            <td>My spotlight in the GUI doesnt appear to do anything when I click the "moving" checkbox, why is this?</td>
+            <td>This is because the code that calcutes the position for the spotlight runs once and never again because nothing is telling it to.
+                To fix this, simply move the spotlight movement code inside of the animation loop, this way it will run 60 times per second and if
+                the spotlight is on, it will move it.</td>
+          </tr>
       </tbody>
     </table>
   </div>
