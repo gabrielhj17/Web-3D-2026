@@ -87,6 +87,13 @@
                 To fix this, simply move the spotlight movement code inside of the animation loop, this way it will run 60 times per second and if
                 the spotlight is on, it will move it.</td>
           </tr>
+          <tr>
+            <td>Fixing an animation bug</td>
+            <td>Claude</td>
+            <td>The animation of the wheels moving has stopped working</td>
+            <td>You have a bug in animate, you are calling getDelta() twice. You stored delta in a variable but then called clock.getDelta() 
+              again instead of using it. The second call returns 0 because the clock already reset, the mixer was getting 0 every frame so the animation couldn't advance.</td>
+          </tr>
       </tbody>
     </table>
   </div>
