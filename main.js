@@ -116,13 +116,6 @@ function init() {
   spot.add(params.spot, 'helper').onChange(value => lights.spotHelper.visible = value);
   spot.add(params.spot, 'moving');
 
-  const time = clock.getElapsedTime();
-  const delta = Math.sin(time)*5;
-  if (params.spot.moving) {
-    lights.spot.position.x = delta;
-    lights.spotHelper.update();
-  }
-
   renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
@@ -167,7 +160,13 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
+  const delta = clock.getDelta();
   if (mixer) mixer.update(clock.getDelta());
+
+  if (params.spot.moving) {
+    lights.spot.position.x = Math.sin(clock.getElapsedTime()) * 5;
+    lights.spotHelper.update();
+  }
   
   if (isSpinning && loadedModel) {
     loadedModel.rotation.y += 0.01;
