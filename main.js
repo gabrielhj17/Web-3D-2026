@@ -161,7 +161,7 @@ function init() {
 function animate() {
   requestAnimationFrame(animate);
   const delta = clock.getDelta();
-  if (mixer) mixer.update(clock.getDelta());
+  if (mixer) mixer.update(delta);
 
   if (params.spot.moving) {
     lights.spot.position.x = Math.sin(clock.getElapsedTime()) * 5;
