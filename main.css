@@ -340,3 +340,14 @@ header {
 .paints:hover {
   border-color: #e63946;
 }
+
+img {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  width: 35%;
+  height: auto;
+}
+
+img.clicked {
+  transform: scale(1.5);
+}

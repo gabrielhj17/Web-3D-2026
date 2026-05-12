@@ -35,6 +35,14 @@
     <h1>3D Models</h1>
     <p>For my car sales website I created three different models of cars in Blender: a sports car, a truck 
       and a hatchback. I also created an animation of the sports cars wheel spinning to simulate the car driving.</p>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-6">
+          <img src="Assets/BlenderAventador.png" alt="Aventador Model in Blender" class="img-fluid" id="image1"></img>
+          <img src="Assets/BlenderAventadorWheel.png" alt="Aventador Wheel in Blender" class="img-fluid" id="image2"></img>
+        </div>
+      </div>
+    </div>
     <h1>Design</h1>
     <p>I used Three.js to light my scene with a hemisphere light and added a GUI so the user can control a spot light.
       I added the models into my web page using three.js as well as using Three.js OrbitControls to allow the user to
@@ -112,6 +120,14 @@
   </div>
 
   <footer>Web 3D Motors 2026</footer>
+
+  <script>
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('click', function() {
+        this.classList.toggle('clicked');
+      });
+    });
+  </script>
 
 </body>
 </html>
