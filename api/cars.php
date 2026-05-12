@@ -14,8 +14,13 @@ if (!$model) {
 }
 
 if ($action === 'increment') {
-    $db->exec("INSERT INTO views (model, count) VALUES ('$model', 1) 
-               ON CONFLICT(model) DO UPDATE SET count = count + 1");
+    $stmt = $db->query("SELECT count FROM views WHERE model = '$model'");
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+        $db->exec("UPDATE views SET count = count + 1 WHERE model = '$model'");
+    } else {
+        $db->exec("INSERT INTO views (model, count) VALUES ('$model', 1)");
+    }
 }
 
 $stmt = $db->query("SELECT count FROM views WHERE model = '$model'");
