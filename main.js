@@ -148,6 +148,8 @@ function init() {
     });
   });
 
+  updateViewCount('Aventador.glb');
+
   document.getElementById('paint-section').style.display = 'block';
 
   const listener = new THREE.AudioListener();
@@ -407,3 +409,11 @@ document.querySelectorAll('.paints').forEach(function(swatch) {
     });
   });
 });
+
+function updateViewCount(modelKey) {
+  fetch('api/cars.php?model=' + modelKey + '&action=increment')
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+      document.getElementById('view-count').textContent = data.views;
+    });
+}
