@@ -8,7 +8,7 @@ const playModelAnimationBtn = document.getElementById("playAnimation");
 const modelData = {
   'Aventador.glb': {
     scale: 1,
-    position: new THREE.Vector3(0, 1, 0),
+    position: new THREE.Vector3(0, 1.1, 0),
     title:       'Web 3D Bamborghini Baventador',
     subtitle:    '2026 Model · Super Sports',
     price:       '£189,900',
@@ -24,7 +24,7 @@ const modelData = {
   },
   'Car.glb': {
     scale: 2,
-    position: new THREE.Vector3(0, 0, 0),
+    position: new THREE.Vector3(0, 0.2, 0),
     title:       'Web 3D Family Cruiser',
     subtitle:    '2026 Model · Family Saloon',
     price:       '£32,500',
@@ -40,7 +40,7 @@ const modelData = {
   },
   'Truck.glb': {
     scale: 2,
-    position: new THREE.Vector3(0, 0, 0),
+    position: new THREE.Vector3(0, 0.2, 0),
     title:       'Web 3D Pickup Truck',
     subtitle:    '2026 Model · Heavy Duty',
     price:       '£54,000',
@@ -87,6 +87,12 @@ function init() {
   lights.spotHelper.visible = false;
   scene.add(lights.spotHelper);
   scene.add(lights.spot);
+
+  const groundGeo = new THREE.PlaneGeometry(50, 50);
+  const groundMat = new THREE.MeshStandardMaterial({ color: 0x111111 });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  scene.add(ground);
 
   params = {
     spot: {
