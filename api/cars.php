@@ -5,8 +5,8 @@ header('Access-Control-Allow-Origin: *');
 $db = new PDO('sqlite:' . __DIR__ . '/../data/views.db');
 $db->exec('CREATE TABLE IF NOT EXISTS views (model TEXT PRIMARY KEY, count INTEGER DEFAULT 0)');
 
-$model = $_GET['model'] ?? null;
-$action = $_GET['action'] ?? 'get';
+$model = isset($_GET['model']) ? $_GET['model'] : null;
+$action = isset($_GET['action']) ? $_GET['action'] : 'get';
 
 if (!$model) {
     echo json_encode(['error' => 'No model specified']);
