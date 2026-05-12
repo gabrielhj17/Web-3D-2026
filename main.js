@@ -3,6 +3,7 @@ let scene, camera, renderer, clock, mixer, actions = [], mode, isWireframe = fal
   secondModelActions = [], ambientLight, directionalLight, sound, isSpinning = false;
 const loader = new THREE.GLTFLoader();
 const assetPath = 'Models/';
+const playModelAnimationBtn = document.getElementById("playAnimation");
 
 const modelData = {
   'Aventador.glb': {
@@ -59,6 +60,8 @@ init();
 
 function init() {
   const canvas = document.getElementById('three-canvas');
+
+  document.getElementById('paint-section').style.display = 'block';
 
   clock = new THREE.Clock();
 
@@ -138,6 +141,8 @@ function init() {
       actions.push(mixer.clipAction(clip));
     });
   });
+
+  document.getElementById('paint-section').style.display = 'block';
 
   const listener = new THREE.AudioListener();
   camera.add(listener);
@@ -241,6 +246,12 @@ function loadModel(modelPath) {
       const action = mixer.clipAction(clip);
       actions.push(action);
     })
+
+    if (modelKey === 'Aventador.glb') {
+      document.getElementById('paint-section').style.display = 'block';
+    } else {
+      document.getElementById('paint-section').style.display = 'none';
+    }
   })
 }
 
@@ -359,7 +370,6 @@ document.getElementById('toggleDirectional').addEventListener('click', function 
   this.classList.toggle('light-off', !directionalLight.visible);
 });
 
-const playModelAnimationBtn = document.getElementById("playAnimation");
 playModelAnimationBtn.addEventListener('click', function () {
   if (actions.length > 0) {
     actions.forEach(action => {
