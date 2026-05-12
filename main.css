@@ -151,6 +151,7 @@ table.table-bordered td {
   width: 100%;
   height: 100%;
   display: block;
+  overflow: hidden;
 }
 
 /* Info panel */
@@ -350,4 +351,21 @@ img {
 
 img.clicked {
   transform: scale(1.5);
+}
+
+@media (max-width: 768px) {
+  .viewer-layout {
+    flex-direction: column;
+  }
+
+  .viewer-left {
+    flex: none;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+  }
+
+  .car-info-panel {
+    width: 100%;
+  }
 }
