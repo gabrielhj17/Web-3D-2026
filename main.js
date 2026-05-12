@@ -292,12 +292,15 @@ switchBtn.addEventListener('click', function () {
   // Switch model
   if (currentModel === 'Aventador.glb') {
     currentModel = 'Car.glb';
+    updateViewCount(currentModel);
     loadModel(assetPath + 'Car.glb');
   } else if (currentModel === 'Car.glb') {
     currentModel = 'Truck.glb';
+    updateViewCount(currentModel);
     loadModel(assetPath + 'Truck.glb');
   } else {
     currentModel = 'Aventador.glb';
+    updateViewCount(currentModel);
     loadModel(assetPath + 'Aventador.glb');
   }
 
