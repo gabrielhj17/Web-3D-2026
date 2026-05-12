@@ -11,3 +11,6 @@ Thumbs.db
 *.tmp
 *.bak
 *~
+
+# Database folder
+data/
