@@ -122,7 +122,8 @@ button {
 table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 table.table-bordered th,

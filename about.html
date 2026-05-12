@@ -94,6 +94,11 @@
             <td>You have a bug in animate, you are calling getDelta() twice. You stored delta in a variable but then called clock.getDelta() 
               again instead of using it. The second call returns 0 because the clock already reset, the mixer was getting 0 every frame so the animation couldn't advance.</td>
           </tr>
+          <td>Fixing button styling on the GitHub page</td>
+          <td>Claude</td>
+          <td>Why isn't the styling working for this button? "a href="https://github.com/gabrielhj17/Web-3D-2026" target="_blank" class="button">View on GitHub</a>"
+              I have a class in my css called button that styles all the other buttons.</td>
+          <td>Your CSS styles the button element directly, simply wrap that in a button element and the class will apply.</td>
       </tbody>
     </table>
   </div>
