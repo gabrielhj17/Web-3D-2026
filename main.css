@@ -324,3 +324,20 @@ header {
 .sitemap-card a:hover {
   text-decoration: underline;
 }
+
+.paint-colours {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.paints {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.paints:hover {
+  border-color: #e63946;
+}

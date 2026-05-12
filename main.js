@@ -376,3 +376,18 @@ playModelAnimationBtn.addEventListener('click', function () {
     this.textContent = isSpinning ? 'Stop Spinning' : 'Spin Model';
   }
 });
+
+// Paint colour picker
+document.querySelectorAll('.paints').forEach(function(swatch) {
+  swatch.addEventListener('click', function() {
+    const colour = new THREE.Color(this.dataset.colour);
+    const bodyMeshes = ['Main_Body', 'Main_Body_1'];
+
+    scene.traverse(function(child) {
+      if (child.isMesh && bodyMeshes.includes(child.name)) {
+        child.material = child.material.clone();
+        child.material.color.set(colour);
+      }
+    });
+  });
+});
